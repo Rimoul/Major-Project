@@ -21,9 +21,11 @@ darksBtn.addEventListener('click', () => {
 
 
 
-const keys = '1kRVhnEkw3rZUzJzB5ZwayEkq0DSfPcc';
-
-
+const keys = ['w7pOdpcYi2pueQHxyVgtXqAQrYKKuMzX',
+'o2tSPnmbN7Dr5vzpuG0S5ASlcvYTxAvy',
+'1kRVhnEkw3rZUzJzB5ZwayEkq0DSfPcc',
+'4G8awGzOj67c94zyS5ZPr0VD6shiJdpL',
+'r4eYXSYDEV0lC5giWdHYrhM9IoMQLfb2']
 
 // Update weather information
 const positionEl =   document.getElementById('location')
@@ -33,9 +35,6 @@ let windSpeedEl = document.getElementById('wind-speed')
 let cloudCoverEl = document.getElementById('cloud-cover')
 let visibilityEl = document.getElementById('visibility')
     
-    
-
-
 
 
 
@@ -48,30 +47,29 @@ searchButton.addEventListener('click', function() {
   // Get the value of the input field
   const loc = searchInput.value;
   
-  // Do something with the value (for example, log it to the console)
-  console.log('Search value:', loc);
-  console.log('Search value:', typeof loc);
+  /*   // Do something with the value (for example, log it to the console)
+    console.log('Search value:', loc);
+    console.log('Search value:', typeof loc); */
 
    // Clear the input field
    searchInput.value = "";
+
    const options = {method: 'GET', headers: {accept: 'application/json'}};
-
-fetch(`https://api.tomorrow.io/v4/weather/realtime?location=${loc}&apikey=${keys}`, options)
-      .then(response => response.json())
-      .then(response => {
-        console.log(response)
-           positionEl.innerText = response.location.name;
-        temperatureEl.innerText = response.data.values.temperature + '°C';
-           humidityEl.innerText = response.data.values.humidity + '%';
-           windSpeedEl.innerText = response.data.values.windSpeed + ' m/s';
-           cloudCoverEl.innerText = response.data.values.cloudCover + '%';
-           visibilityEl.innerText = response.data.values.visibility + ' km';
-        
-      })
-    .catch(err => console.error(err));
-
-});
-
+   fetch(`https://api.tomorrow.io/v4/weather/realtime?location=${loc}&apikey=${keys[0]}`, options)
+         .then(response => response.json())
+         .then(response => {
+           console.log(response)
+              positionEl.innerText = response.location.name;
+           temperatureEl.innerText = response.data.values.temperature + '°C';
+              humidityEl.innerText = response.data.values.humidity + '%';
+              windSpeedEl.innerText = response.data.values.windSpeed + ' m/s';
+              cloudCoverEl.innerText = response.data.values.cloudCover + '%';
+              visibilityEl.innerText = response.data.values.visibility + ' km';
+           
+         })
+       .catch(err => console.error(err));
+  });
+  
     
     
 
